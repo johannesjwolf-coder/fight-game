@@ -30,7 +30,18 @@ die exportierte Serverdatei für drei Frames. Export Templates erforderlich.
 
 ## Prüfstatus
 
-Lokale Engine-/Export-/Browserausführung zunächst offen: Godot ist nicht im PATH;
-Download der Engine durch DNS-Auflösung von release-assets.githubusercontent.com
-fehlgeschlagen. CI und Tests sind eingerichtet, aber damit noch nicht als bestanden
-nachgewiesen. Phase 2 beginnt erst nach bestandenem Gate.
+Geprüft am 17.09.2026 mit Godot 4.5.2:
+
+- Windows: Headless-Projektimport erfolgreich, keine Skriptfehler.
+- Windows: Client- und Server-Smoke-Test bestanden.
+- Windows: Web- und Linux-Serverexport erfolgreich.
+- Chromium: Webexport über lokalen HTTP-Server geladen; ein Canvas, keine
+  JavaScript-/Konsolenfehler. Screenshot visuell geprüft: Arena, Texte, zwei
+  Figuren, drei Plattformen und Rasterbutton sichtbar.
+- GitHub Actions auf Ubuntu: Import, beide Smoke-Tests, beide Exporte und Start
+  der exportierten Linux-Serverdatei bestanden:
+  [CI-Lauf](https://github.com/johannesjwolf-coder/fight-game/actions/runs/35199012323).
+
+Firefox/WebKit und echte Tastatur-/Mausinteraktion sind noch nicht manuell
+abgenommen; die Rasterfunktion selbst wurde im automatischen Szenentest geprüft.
+Kein öffentlicher Server deployt, keine Multiplayer-/Performance-Zusage.
