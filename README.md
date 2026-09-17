@@ -67,4 +67,3 @@ aus und leitet WSS zum Godot-Server weiter. Docker-Deployment folgt in Phase 24.
 Ab Phase 2 kommt `scripts/shared/` für die renderunabhängige Simulation hinzu.
 Keine npm-/Node-Abhängigkeiten erforderlich. CI importiert, testet und exportiert
 beide Zielplattformen; Exportartefakte stehen beim erfolgreichen Workflow bereit.
-

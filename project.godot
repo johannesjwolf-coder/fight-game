@@ -1,0 +1,23 @@
+; Engine and export templates: Godot 4.5.2 stable, standard edition.
+config_version=5
+
+[application]
+config/name="Fight Game"
+run/main_scene="res://scenes/bootstrap.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/description="An original browser platform fighter. Phase 1 foundation."
+
+[display]
+window/size/viewport_width=1152
+window/size/viewport_height=720
+window/size/window_width_override=1152
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+
+[physics]
+common/physics_ticks_per_second=60
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.055, 0.067, 0.11, 1)
