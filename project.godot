@@ -5,7 +5,7 @@ config_version=5
 config/name="Fight Game"
 run/main_scene="res://scenes/bootstrap.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/description="An original browser platform fighter. Phase 1 foundation."
+config/description="An original browser platform fighter. Phase 2 simulation and replay."
 
 [display]
 window/size/viewport_width=1152

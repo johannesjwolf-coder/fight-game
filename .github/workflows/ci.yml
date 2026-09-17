@@ -26,13 +26,19 @@ jobs:
           godot --headless --path . --editor --import
           godot --headless --path . --script tests/smoke.gd
           godot --headless --path . --script tests/smoke.gd -- --server
+          godot --headless --path . --script tests/simulation.gd
       - name: Export browser and dedicated server
         run: |
           mkdir -p build/web build/server
           godot --headless --path . --export-release Web
           godot --headless --path . --export-release 'Linux Server'
           build/server/fight-game.x86_64 --headless --quit-after 3
+      - name: Compare Web replay with dedicated Linux server
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium firefox webkit
+          python tests/browser_replay.py build/server/fight-game.x86_64
       - uses: actions/upload-artifact@v4
         with:
-          name: fight-game-phase-1
+          name: fight-game-phase-2
           path: build/

@@ -19,11 +19,12 @@ func _ready() -> void:
 	hud.add_child(button)
 	button.grab_focus()
 	get_viewport().size_changed.connect(queue_redraw)
+	add_child(load("res://scripts/client/simulation_debug.gd").new())
 
 func _draw() -> void:
 	var font := ThemeDB.fallback_font
 	draw_string(font, Vector2(48, 51), "FG / FIGHT GAME", HORIZONTAL_ALIGNMENT_LEFT, -1, 22, ORANGE)
-	draw_string(font, Vector2(852, 49), "PHASE 01  /  GODOT", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, MUTED)
+	draw_string(font, Vector2(852, 49), "PHASE 02  /  GODOT", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, MUTED)
 	draw_line(Vector2(48, 74), Vector2(1104, 74), Color("30394d"))
 	draw_string(font, Vector2(48, 129), "Deine Arena. Deine Regeln.", HORIZONTAL_ALIGNMENT_LEFT, -1, 34, INK)
 	draw_string(font, Vector2(48, 159), "Das Fundament fuer einen eigenen Platform Fighter.", HORIZONTAL_ALIGNMENT_LEFT, -1, 17, MUTED)
@@ -44,4 +45,4 @@ func _draw() -> void:
 	draw_string(font, Vector2(364, 555), "FUNKE", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, ORANGE)
 	draw_string(font, Vector2(717, 555), "AMBOSS", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color("7bc9e9"))
 	draw_string(font, Vector2(48, 639), "RENDER-VORSCHAU / Noch kein spielbarer Kampf", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, INK)
-	draw_string(font, Vector2(48, 671), "Als Naechstes: fester Simulationstick, Input-Aufzeichnung und Replay.", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, MUTED)
+	draw_string(font, Vector2(48, 671), "Simulation + Replay bereit. Als Naechstes: Tastatur und Ground Movement.", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, MUTED)

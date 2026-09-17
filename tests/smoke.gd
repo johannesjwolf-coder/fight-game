@@ -28,6 +28,13 @@ func _run() -> void:
 		if client.show_guides:
 			_fail("Grid toggle did not update presentation")
 			return
+		var debug = client.get_child(1)
+		debug.paused = true
+		debug._tick()
+		debug._verify_recording()
+		if not debug.notice.begins_with("Replay PASS"):
+			_fail("Debug replay verification failed")
+			return
 	instance.queue_free()
 	await process_frame
 	print("PASS: " + expected + " bootstrap, 60 Hz configuration and lifecycle")

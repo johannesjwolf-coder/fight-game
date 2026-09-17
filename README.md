@@ -5,13 +5,15 @@ Browser-Client und Dedicated Linux Server stammen aus demselben Projekt.
 
 ## Stand
 
-Phase 1: Projektgerüst, statische Arena, umschaltbares Debug-Raster, getrennte
-Client-/Server-Startpfade, Smoke-Tests und Web-/Linux-Exportkonfiguration.
+Phase 2: renderunabhängiger 60-Hz-Simulationskern, ganzzahlige Zustände,
+Input-Aufzeichnung, validierter JSON-Replay und SHA-256-Hash pro Tick.
+Die Arena zeigt Tick, Aufnahme und Hash sowie Pause, Einzelschritt, Reset und
+Replay-Prüfung. Ein Fixture-Test vergleicht 30/60/144 Hz.
 Noch keine Bewegung, Kämpfe, Netzwerkverbindung oder veröffentlichte Webseite.
 
 Der TypeScript/PixiJS-Ansatz wurde auf Wunsch durch Godot ersetzt.
 Der vollständige Fahrplan steht in [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md).
-Prüfstatus: [Phase 1](docs/phases/01-foundation.md).
+Prüfstatus: [Phase 1](docs/phases/01-foundation.md), [Phase 2](docs/phases/02-simulation.md).
 
 ## Starten
 
@@ -28,6 +30,8 @@ godot --editor --path .
 godot --headless --path . --editor --import
 godot --headless --path . --script tests/smoke.gd
 godot --headless --path . --script tests/smoke.gd -- --server
+godot --headless --path . --script tests/simulation.gd
+godot --headless --path . -- --verify-replay
 godot --headless --path . -- --server
 ```
 
@@ -64,6 +68,12 @@ aus und leitet WSS zum Godot-Server weiter. Docker-Deployment folgt in Phase 24.
 - `docs/`: Architektur, Phasen, Testnachweise
 - `export_presets.cfg`: Browser und Dedicated Linux Server
 
-Ab Phase 2 kommt `scripts/shared/` für die renderunabhängige Simulation hinzu.
+`scripts/shared/` enthält die renderunabhängige Simulation und Replay-Verarbeitung.
 Keine npm-/Node-Abhängigkeiten erforderlich. CI importiert, testet und exportiert
 beide Zielplattformen; Exportartefakte stehen beim erfolgreichen Workflow bereit.
+
+Der Webexport liefert unter `?selftest=1` das Fixture-Ergebnis zusätzlich als
+`window.FG_PHASE2_RESULT`. CI vergleicht alle Tick-Hashes über einen Trace-Hash
+zwischen dem exportierten Linux-Server und Chromium, Firefox und WebKit.
+Die aktuelle Live-Aufzeichnung enthält neutrale Inputs und ist auf 3600 Ticks
+begrenzt. Echte Tastatursteuerung und Ground Movement folgen in Phase 3.
